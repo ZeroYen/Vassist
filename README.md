@@ -120,11 +120,12 @@ Add a new language section in `dialogue.json`:
 
 ```
 vassist/
-├── src/
-│   ├── script.js      # Core assistant functionality
-│   ├── styles.css     # Styling and animations
+├── data/
 │   ├── dialogue.json  # Dialogue configurations
 │   └── template.json  # Theme and layout settings
+├── src/
+│   ├── script.js      # Core assistant functionality
+│   └──  styles.css     # Styling and animations
 ├── index.html         # Demo page
 └── README.md         # Documentation
 ```
@@ -152,4 +153,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Inspired by modern chat interfaces
 
 ---
-Made with ❤️ by [ZeroYen]
+Made with ❤️ by ZeroYen
