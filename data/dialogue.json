@@ -1,0 +1,721 @@
+{
+  "languages": {
+    "en": {
+      "name": "English",
+      "welcomeMessage": {
+        "text": "👋 Hello! I'm VAssist, your virtual assistant. I can help you with customization, features, and support.",
+        "style": "greeting"
+      },
+      "dialogues": {
+        "language_select": {
+          "message": {
+            "text": "Please select your preferred language:",
+            "style": "question"
+          },
+          "options": [
+            {"id": "en", "text": "English", "nextNode": "start"},
+            {"id": "sv", "text": "Svenska", "nextNode": "start"},
+            {"id": "ja", "text": "日本語", "nextNode": "start"},
+            {"id": "ko", "text": "한국어", "nextNode": "start"},
+            {"id": "zh", "text": "中文", "nextNode": "start"},
+            {"id": "vi", "text": "Tiếng Việt", "nextNode": "start"}
+          ]
+        },
+        "start": {
+          "message": {
+            "text": "How can I assist you today?",
+            "style": "question"
+          },
+          "options": [
+            {
+              "id": "customize",
+              "text": "Customize VAssist",
+              "response": {
+                "text": "Let's personalize VAssist to your preferences. What would you like to customize?",
+                "style": "helpful"
+              },
+              "nextNode": "customize_options"
+            },
+            {
+              "id": "features",
+              "text": "Explore Features",
+              "response": {
+                "text": "I'll show you what VAssist can do. What interests you?",
+                "style": "informative"
+              },
+              "nextNode": "feature_categories"
+            },
+            {
+              "id": "help",
+              "text": "Get Help",
+              "response": {
+                "text": "I'm here to help! What kind of assistance do you need?",
+                "style": "supportive"
+              },
+              "nextNode": "help_topics"
+            }
+          ]
+        },
+        "customize_options": {
+          "message": {
+            "text": "Choose what you'd like to customize:",
+            "style": "helpful"
+          },
+          "options": [
+            {
+              "id": "appearance",
+              "text": "Appearance Settings",
+              "response": {
+                "text": "Let's make VAssist look just right. What would you like to change?",
+                "style": "helpful"
+              },
+              "nextNode": "appearance_settings"
+            },
+            {
+              "id": "behavior",
+              "text": "Behavior Settings",
+              "response": {
+                "text": "Customize how VAssist interacts with you. What would you like to adjust?",
+                "style": "helpful"
+              },
+              "nextNode": "behavior_settings"
+            },
+            {
+              "id": "notifications",
+              "text": "Notification Settings",
+              "response": {
+                "text": "Control how and when VAssist notifies you. What would you like to configure?",
+                "style": "helpful"
+              },
+              "nextNode": "notification_settings"
+            }
+          ]
+        },
+        "appearance_settings": {
+          "message": {
+            "text": "Customize VAssist's appearance:",
+            "style": "helpful"
+          },
+          "options": [
+            {
+              "id": "theme",
+              "text": "Change Theme",
+              "response": {
+                "text": "Select a theme that suits your style:",
+                "style": "helpful"
+              },
+              "nextNode": "theme_selection"
+            },
+            {
+              "id": "size",
+              "text": "Adjust Size",
+              "response": {
+                "text": "Choose the size that works best for you:",
+                "style": "helpful"
+              },
+              "nextNode": "size_selection"
+            },
+            {
+              "id": "position",
+              "text": "Change Position",
+              "response": {
+                "text": "Select where you want VAssist to appear:",
+                "style": "helpful"
+              },
+              "nextNode": "position_selection"
+            }
+          ]
+        },
+        "theme_selection": {
+          "message": {
+            "text": "Choose a theme:",
+            "style": "helpful"
+          },
+          "options": [
+            {
+              "id": "light",
+              "text": "Light Theme",
+              "response": {
+                "text": "Light theme applied! Would you like to customize it further?",
+                "style": "success"
+              },
+              "nextNode": "theme_customization"
+            },
+            {
+              "id": "dark",
+              "text": "Dark Theme",
+              "response": {
+                "text": "Dark theme applied! Would you like to customize it further?",
+                "style": "success"
+              },
+              "nextNode": "theme_customization"
+            },
+            {
+              "id": "custom",
+              "text": "Custom Theme",
+              "response": {
+                "text": "Let's create your perfect theme. What colors would you like to use?",
+                "style": "helpful"
+              },
+              "nextNode": "custom_theme"
+            }
+          ]
+        },
+        "feature_categories": {
+          "message": {
+            "text": "VAssist has many features. What would you like to explore?",
+            "style": "informative"
+          },
+          "options": [
+            {
+              "id": "ai_features",
+              "text": "AI Capabilities",
+              "response": {
+                "text": "Discover VAssist's AI-powered features:",
+                "style": "informative"
+              },
+              "nextNode": "ai_features_list"
+            },
+            {
+              "id": "automation",
+              "text": "Automation Tools",
+              "response": {
+                "text": "Learn about VAssist's automation capabilities:",
+                "style": "informative"
+              },
+              "nextNode": "automation_features"
+            },
+            {
+              "id": "integration",
+              "text": "Integrations",
+              "response": {
+                "text": "Explore how VAssist works with other tools:",
+                "style": "informative"
+              },
+              "nextNode": "integration_options"
+            }
+          ]
+        },
+        "ai_features_list": {
+          "message": {
+            "text": "Here are VAssist's AI capabilities:",
+            "style": "informative"
+          },
+          "options": [
+            {
+              "id": "natural_language",
+              "text": "Natural Language Processing",
+              "response": {
+                "text": "VAssist understands natural language and can engage in meaningful conversations. Would you like to see an example?",
+                "style": "informative"
+              },
+              "nextNode": "nlp_demo"
+            },
+            {
+              "id": "smart_suggestions",
+              "text": "Smart Suggestions",
+              "response": {
+                "text": "VAssist learns from your interactions to provide personalized suggestions. Want to see how it works?",
+                "style": "informative"
+              },
+              "nextNode": "suggestions_demo"
+            },
+            {
+              "id": "context_awareness",
+              "text": "Context Awareness",
+              "response": {
+                "text": "VAssist understands context and maintains conversation history. Let me show you how this works.",
+                "style": "informative"
+              },
+              "nextNode": "context_demo"
+            }
+          ]
+        },
+        "help_topics": {
+          "message": {
+            "text": "What kind of help do you need?",
+            "style": "supportive"
+          },
+          "options": [
+            {
+              "id": "getting_started",
+              "text": "Getting Started Guide",
+              "response": {
+                "text": "Let me help you get started with VAssist. What would you like to learn first?",
+                "style": "tutorial"
+              },
+              "nextNode": "getting_started_guide"
+            },
+            {
+              "id": "troubleshooting",
+              "text": "Troubleshooting",
+              "response": {
+                "text": "I'll help you solve any issues. What problem are you experiencing?",
+                "style": "supportive"
+              },
+              "nextNode": "troubleshooting_options"
+            },
+            {
+              "id": "faq",
+              "text": "Frequently Asked Questions",
+              "response": {
+                "text": "Here are some common questions about VAssist. What would you like to know?",
+                "style": "informative"
+              },
+              "nextNode": "faq_categories"
+            }
+          ]
+        }
+      }
+    },
+    "ja": {
+      "name": "日本語",
+      "welcomeMessage": {
+        "text": "👋 こんにちは！バーチャルアシスタントのVAssistです。本日はどのようなご用件でしょうか？",
+        "style": "greeting"
+      },
+      "dialogues": {
+        "language_select": {
+          "message": {
+            "text": "ご希望の言語を選択してください：",
+            "style": "question"
+          },
+          "options": [
+            {"id": "en", "text": "English", "nextNode": "start"},
+            {"id": "sv", "text": "Svenska", "nextNode": "start"},
+            {"id": "ja", "text": "日本語", "nextNode": "start"},
+            {"id": "ko", "text": "한국어", "nextNode": "start"},
+            {"id": "zh", "text": "中文", "nextNode": "start"},
+            {"id": "vi", "text": "Tiếng Việt", "nextNode": "start"}
+          ]
+        },
+        "start": {
+          "message": {
+            "text": "どの機能についてご説明いたしましょうか？",
+            "style": "question"
+          },
+          "options": [
+            {
+              "id": "tutorial",
+              "text": "クイックチュートリアル",
+              "response": {
+                "text": "基本的な使い方をご案内いたします。どの部分に興味がありますか？",
+                "style": "tutorial"
+              },
+              "nextNode": "tutorial_options"
+            },
+            {
+              "id": "features",
+              "text": "機能概要",
+              "response": {
+                "text": "VAssistの機能についてご説明いたします！",
+                "style": "informative"
+              },
+              "nextNode": "features_list"
+            },
+            {
+              "id": "settings",
+              "text": "設定のカスタマイズ",
+              "response": {
+                "text": "VAssistの設定をカスタマイズできます。何を調整しますか？",
+                "style": "helpful"
+              },
+              "nextNode": "settings_options"
+            }
+          ]
+        },
+        "tutorial_options": {
+          "message": {
+            "text": "詳しく知りたいトピックを選択してください：",
+            "style": "tutorial"
+          },
+          "options": [
+            {
+              "id": "interface",
+              "text": "インターフェースの操作",
+              "response": {
+                "text": "VAssistのインターフェースの効果的な操作方法をご案内します。",
+                "style": "tutorial"
+              },
+              "nextNode": "interface_guide"
+            },
+            {
+              "id": "language",
+              "text": "言語設定",
+              "response": {
+                "text": "VAssistは複数の言語に対応しています。言語の変更方法をご案内します。",
+                "style": "tutorial"
+              },
+              "nextNode": "language_guide"
+            },
+            {
+              "id": "theme",
+              "text": "テーマのカスタマイズ",
+              "response": {
+                "text": "VAssistの外観をカスタマイズできます。テーマのオプションを見てみましょう。",
+                "style": "tutorial"
+              },
+              "nextNode": "theme_guide"
+            }
+          ]
+        }
+      }
+    },
+    "ko": {
+      "name": "한국어",
+      "welcomeMessage": {
+        "text": "👋 안녕하세요! 가상 비서 VAssist입니다. 오늘은 어떤 도움이 필요하신가요?",
+        "style": "greeting"
+      },
+      "dialogues": {
+        "language_select": {
+          "message": {
+            "text": "원하시는 언어를 선택해 주세요:",
+            "style": "question"
+          },
+          "options": [
+            {"id": "en", "text": "English", "nextNode": "start"},
+            {"id": "sv", "text": "Svenska", "nextNode": "start"},
+            {"id": "ja", "text": "日本語", "nextNode": "start"},
+            {"id": "ko", "text": "한국어", "nextNode": "start"},
+            {"id": "zh", "text": "中文", "nextNode": "start"},
+            {"id": "vi", "text": "Tiếng Việt", "nextNode": "start"}
+          ]
+        },
+        "start": {
+          "message": {
+            "text": "어떤 기능을 살펴보시겠습니까?",
+            "style": "question"
+          },
+          "options": [
+            {
+              "id": "tutorial",
+              "text": "빠른 튜토리얼",
+              "response": {
+                "text": "기본 사용법을 안내해 드리겠습니다. 어떤 부분에 관심이 있으신가요?",
+                "style": "tutorial"
+              },
+              "nextNode": "tutorial_options"
+            },
+            {
+              "id": "features",
+              "text": "기능 개요",
+              "response": {
+                "text": "VAssist의 기능을 소개해 드리겠습니다!",
+                "style": "informative"
+              },
+              "nextNode": "features_list"
+            },
+            {
+              "id": "settings",
+              "text": "설정 사용자 지정",
+              "response": {
+                "text": "VAssist를 원하시는 대로 설정하실 수 있습니다. 어떤 설정을 조정하시겠습니까?",
+                "style": "helpful"
+              },
+              "nextNode": "settings_options"
+            }
+          ]
+        },
+        "tutorial_options": {
+          "message": {
+            "text": "자세히 알아보고 싶은 주제를 선택하세요:",
+            "style": "tutorial"
+          },
+          "options": [
+            {
+              "id": "interface",
+              "text": "인터페이스 탐색",
+              "response": {
+                "text": "VAssist 인터페이스를 효과적으로 사용하는 방법을 알려드리겠습니다.",
+                "style": "tutorial"
+              },
+              "nextNode": "interface_guide"
+            },
+            {
+              "id": "language",
+              "text": "언어 설정",
+              "response": {
+                "text": "VAssist는 여러 언어를 지원합니다. 언어 변경 방법을 안내해 드리겠습니다.",
+                "style": "tutorial"
+              },
+              "nextNode": "language_guide"
+            },
+            {
+              "id": "theme",
+              "text": "테마 사용자 지정",
+              "response": {
+                "text": "VAssist의 외관을 사용자 지정할 수 있습니다. 테마 옵션을 살펴보겠습니다.",
+                "style": "tutorial"
+              },
+              "nextNode": "theme_guide"
+            }
+          ]
+        }
+      }
+    },
+    "zh": {
+      "welcome": {
+        "message": {
+          "text": "👋 您好！我是您的虚拟助手VAssist。今天需要什么帮助？",
+          "style": "greeting"
+        },
+        "options": [
+          {
+            "text": "开始使用",
+            "next": "get_started",
+            "style": "primary"
+          },
+          {
+            "text": "了解更多",
+            "next": "about",
+            "style": "secondary"
+          },
+          {
+            "text": "支持",
+            "next": "support",
+            "style": "secondary"
+          }
+        ]
+      },
+      "get_started": {
+        "message": {
+          "text": "太好了！让我们来看看您想探索什么？",
+          "style": "standard"
+        },
+        "options": [
+          {
+            "text": "快速教程",
+            "next": "tutorial",
+            "style": "primary"
+          },
+          {
+            "text": "功能概览",
+            "next": "features",
+            "style": "info"
+          },
+          {
+            "text": "自定义设置",
+            "next": "settings",
+            "style": "secondary"
+          }
+        ]
+      },
+      "tutorial": {
+        "message": {
+          "text": "我将为您介绍基础知识。您最感兴趣的是哪个方面？",
+          "style": "tutorial"
+        },
+        "options": [
+          {
+            "text": "界面导航",
+            "next": "tutorial_nav",
+            "style": "info"
+          },
+          {
+            "text": "语言设置",
+            "next": "tutorial_lang",
+            "style": "info"
+          },
+          {
+            "text": "主题定制",
+            "next": "tutorial_theme",
+            "style": "info"
+          }
+        ]
+      }
+    },
+    "sv": {
+      "welcome": {
+        "message": {
+          "text": "👋 Hej! Jag är VAssist, din virtuella assistent. Hur kan jag hjälpa dig idag?",
+          "style": "greeting"
+        },
+        "options": [
+          {
+            "text": "Kom igång",
+            "next": "get_started",
+            "style": "primary"
+          },
+          {
+            "text": "Läs mer",
+            "next": "about",
+            "style": "secondary"
+          },
+          {
+            "text": "Support",
+            "next": "support",
+            "style": "secondary"
+          }
+        ]
+      },
+      "get_started": {
+        "message": {
+          "text": "Utmärkt! Låt oss börja. Vad vill du utforska?",
+          "style": "standard"
+        },
+        "options": [
+          {
+            "text": "Snabbguide",
+            "next": "tutorial",
+            "style": "primary"
+          },
+          {
+            "text": "Funktionsöversikt",
+            "next": "features",
+            "style": "info"
+          },
+          {
+            "text": "Anpassa inställningar",
+            "next": "settings",
+            "style": "secondary"
+          }
+        ]
+      },
+      "tutorial": {
+        "message": {
+          "text": "Jag guidar dig genom grunderna. Vad intresserar dig mest?",
+          "style": "tutorial"
+        },
+        "options": [
+          {
+            "text": "Gränssnittsnavigering",
+            "next": "tutorial_nav",
+            "style": "info"
+          },
+          {
+            "text": "Språkinställningar",
+            "next": "tutorial_lang",
+            "style": "info"
+          },
+          {
+            "text": "Temainställningar",
+            "next": "tutorial_theme",
+            "style": "info"
+          }
+        ]
+      }
+    },
+    "vi": {
+      "welcome": {
+        "message": {
+          "text": "👋 Xin chào! Tôi là VAssist, trợ lý ảo của bạn. Tôi có thể giúp gì cho bạn hôm nay?",
+          "style": "greeting"
+        },
+        "options": [
+          {
+            "text": "Bắt đầu",
+            "next": "get_started",
+            "style": "primary"
+          },
+          {
+            "text": "Tìm hiểu thêm",
+            "next": "about",
+            "style": "secondary"
+          },
+          {
+            "text": "Hỗ trợ",
+            "next": "support",
+            "style": "secondary"
+          }
+        ]
+      },
+      "get_started": {
+        "message": {
+          "text": "Tuyệt vời! Hãy bắt đầu. Bạn muốn khám phá điều gì?",
+          "style": "standard"
+        },
+        "options": [
+          {
+            "text": "Hướng dẫn nhanh",
+            "next": "tutorial",
+            "style": "primary"
+          },
+          {
+            "text": "Tổng quan tính năng",
+            "next": "features",
+            "style": "info"
+          },
+          {
+            "text": "Tùy chỉnh cài đặt",
+            "next": "settings",
+            "style": "secondary"
+          }
+        ]
+      },
+      "tutorial": {
+        "message": {
+          "text": "Tôi sẽ hướng dẫn bạn những điều cơ bản. Bạn quan tâm nhất đến khía cạnh nào?",
+          "style": "tutorial"
+        },
+        "options": [
+          {
+            "text": "Điều hướng giao diện",
+            "next": "tutorial_nav",
+            "style": "info"
+          },
+          {
+            "text": "Cài đặt ngôn ngữ",
+            "next": "tutorial_lang",
+            "style": "info"
+          },
+          {
+            "text": "Tùy chỉnh giao diện",
+            "next": "tutorial_theme",
+            "style": "info"
+          }
+        ]
+      }
+    }
+  },
+  "styles": {
+    "greeting": {
+      "background": "linear-gradient(45deg, var(--vassist-primary-color), #64b5f6)",
+      "color": "#ffffff",
+      "padding": "16px",
+      "borderRadius": "12px",
+      "marginBottom": "16px"
+    },
+    "question": {
+      "background": "#f5f5f5",
+      "color": "var(--vassist-text-color)",
+      "padding": "12px",
+      "borderRadius": "8px"
+    },
+    "helpful": {
+      "background": "#fff3e0",
+      "color": "var(--vassist-text-color)",
+      "padding": "14px",
+      "borderRadius": "10px",
+      "borderLeft": "4px solid #ff9800"
+    },
+    "informative": {
+      "background": "#e8f5e9",
+      "color": "var(--vassist-text-color)",
+      "padding": "14px",
+      "borderRadius": "10px",
+      "borderLeft": "4px solid #4caf50"
+    },
+    "supportive": {
+      "background": "#e3f2fd",
+      "color": "var(--vassist-text-color)",
+      "padding": "14px",
+      "borderRadius": "10px",
+      "borderLeft": "4px solid #2196f3"
+    },
+    "success": {
+      "background": "#e8f5e9",
+      "color": "var(--vassist-text-color)",
+      "padding": "14px",
+      "borderRadius": "10px",
+      "borderLeft": "4px solid #43a047"
+    },
+    "tutorial": {
+      "background": "#f3e5f5",
+      "color": "var(--vassist-text-color)",
+      "padding": "14px",
+      "borderRadius": "10px",
+      "borderLeft": "4px solid #9c27b0"
+    }
+  }
+}

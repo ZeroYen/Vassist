@@ -1,0 +1,25 @@
+{
+  "theme": {
+    "primaryColor": "#2196f3",
+    "textColor": "#333333",
+    "backgroundColor": "#ffffff",
+    "buttonColor": "#2196f3",
+    "buttonTextColor": "#ffffff",
+    "fontFamily": "Segoe UI, sans-serif",
+    "fontSize": "14px",
+    "borderRadius": "50%",
+    "icon": "",
+    "avatar": "https://api.dicebear.com/7.x/bottts/svg?seed=assistant"
+  },
+  "layout": {
+    "buttonSize": "60px",
+    "windowWidth": "320px",
+    "windowHeight": "480px",
+    "position": "bottom-right",
+    "margin": "20px"
+  },
+  "animations": {
+    "duration": "0.3s",
+    "type": "ease-out"
+  }
+}

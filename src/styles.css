@@ -1,0 +1,223 @@
+:root {
+  /* These are default values that will be overridden by template.json */
+  --vassist-font-family: var(--font-family, 'Segoe UI', sans-serif);
+  --vassist-font-size: var(--font-size, 14px);
+  --vassist-primary-color: var(--primary-color, #2196f3);
+  --vassist-bg-color: var(--bg-color, #ffffff);
+  --vassist-text-color: var(--text-color, #333333);
+  --vassist-button-color: var(--button-color, #2196f3);
+  --vassist-button-text-color: var(--button-text-color, #ffffff);
+  --vassist-border-radius: var(--border-radius, 8px);
+  --vassist-animation-duration: var(--animation-duration, 0.3s);
+  --vassist-animation-type: var(--animation-type, ease-out);
+  
+  /* Layout */
+  --vassist-margin: 20px;
+  --vassist-button-size: 60px;
+  --vassist-window-width: 320px;
+  --vassist-window-height: 480px;
+}
+
+/* Base styles */
+.vassist-widget {
+  position: fixed;
+  z-index: 1000;
+  font-family: var(--vassist-font-family);
+  font-size: var(--vassist-font-size);
+}
+
+.vassist-widget.bottom-right {
+  bottom: var(--vassist-margin);
+  right: var(--vassist-margin);
+}
+
+/* Toggle button */
+.vassist-button {
+  width: var(--vassist-button-size);
+  height: var(--vassist-button-size);
+  border-radius: var(--vassist-border-radius);
+  background: var(--vassist-button-color);
+  color: var(--vassist-button-text-color);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform var(--vassist-animation-duration) var(--vassist-animation-type);
+}
+
+.vassist-button:hover {
+  transform: scale(1.1);
+}
+
+/* Chat window */
+.vassist-window {
+  position: absolute;
+  bottom: calc(var(--vassist-button-size) + 20px);
+  right: 0;
+  width: var(--vassist-window-width);
+  height: var(--vassist-window-height);
+  background: var(--vassist-bg-color);
+  border-radius: var(--vassist-border-radius);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--vassist-animation-duration) var(--vassist-animation-type);
+}
+
+/* Header */
+.vassist-header {
+  padding: 16px;
+  background: var(--vassist-primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vassist-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.vassist-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vassist-close {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.vassist-close:hover {
+  transform: scale(1.1);
+}
+
+/* Messages container */
+.vassist-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--vassist-primary-color) rgba(0, 0, 0, 0.05);
+}
+
+.vassist-messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.vassist-messages::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.vassist-messages::-webkit-scrollbar-thumb {
+  background: var(--vassist-primary-color);
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+.vassist-messages::-webkit-scrollbar-thumb:hover {
+  background: var(--vassist-primary-color);
+  opacity: 1;
+}
+
+/* Message groups */
+.vassist-message-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 80%;
+}
+
+.vassist-message-group.assistant {
+  align-self: flex-start;
+}
+
+.vassist-message-group.user {
+  align-self: flex-end;
+}
+
+/* Individual messages */
+.vassist-message {
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: var(--vassist-font-size);
+  line-height: 1.4;
+}
+
+.vassist-message.assistant {
+  background: #f5f5f5;
+  color: var(--vassist-text-color);
+  border-top-left-radius: 4px;
+}
+
+.vassist-message.user {
+  background: var(--vassist-primary-color);
+  color: white;
+  border-top-right-radius: 4px;
+}
+
+/* Options */
+.vassist-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.vassist-option {
+  padding: 8px 16px;
+  background: white;
+  border: 2px solid var(--vassist-primary-color);
+  color: var(--vassist-primary-color);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: var(--vassist-font-size);
+  transition: all var(--vassist-animation-duration) var(--vassist-animation-type);
+}
+
+.vassist-option:hover {
+  background: var(--vassist-primary-color);
+  color: white;
+}
+
+/* Typing indicator */
+.vassist-typing {
+  font-size: 20px;
+  letter-spacing: 2px;
+  animation: typing 1s infinite;
+}
+
+@keyframes typing {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
