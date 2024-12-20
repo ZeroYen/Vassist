@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAssist Documentation</title>
+    <link rel="stylesheet" href="src/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <style>
+        :root {
+            --doc-primary: #2196f3;
+            --doc-bg: #ffffff;
+            --doc-text: #333333;
+            --doc-sidebar-bg: #f8f9fa;
+            --doc-border: #e0e0e0;
+            --doc-code-bg: #f5f6f7;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--doc-text);
+            scroll-behavior: smooth;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background: var(--doc-sidebar-bg);
+            border-right: 1px solid var(--doc-border);
+            padding: 2rem;
+            height: 100vh;
+            overflow-y: auto;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-section {
+            margin-bottom: 1rem;
+        }
+
+        .nav-section-title {
+            font-weight: 600;
+            color: var(--doc-text);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-items {
+            list-style: none;
+            padding-left: 0.5rem;
+        }
+
+        .nav-item {
+            margin: 0.3rem 0;
+        }
+
+        .nav-item a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: block;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav-item a:hover {
+            background: rgba(33, 150, 243, 0.1);
+            color: var(--doc-primary);
+        }
+
+        .nav-item a.active {
+            background: rgba(33, 150, 243, 0.1);
+            color: var(--doc-primary);
+            font-weight: 500;
+        }
+
+        /* Content */
+        .content {
+            flex: 1;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: calc(300px + 2rem);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 80px;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--doc-border);
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            margin: 2rem 0 1rem;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            border: 1px solid var(--doc-border);
+            text-align: left;
+        }
+
+        th {
+            background: var(--doc-sidebar-bg);
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border-left: 4px solid;
+        }
+
+        .alert-info {
+            background: #e3f2fd;
+            border-left-color: var(--doc-primary);
+        }
+
+        .alert-warning {
+            background: #fff3e0;
+            border-left-color: #f57c00;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--doc-border);
+            text-align: center;
+            color: #666;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-button {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            background: var(--doc-primary);
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Overlay */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 90;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 1024px) {
+            .content {
+                max-width: calc(100% - 300px);
+                padding: 2rem;
+                padding-left: calc(300px + 2rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: block;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+                width: 280px;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .content {
+                max-width: 100%;
+                padding: 1rem;
+                margin-top: 4rem;
+                padding-left: 1rem;
+                overflow-x: hidden;
+            }
+
+            /* Improve table responsiveness */
+            table {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            /* Improve code block responsiveness */
+            .code-block {
+                margin: 1rem -1rem;
+                padding: 1rem;
+                border-radius: 0;
+                width: auto;
+            }
+
+            pre {
+                white-space: pre;
+                word-wrap: normal;
+            }
+
+            /* Adjust section padding */
+            .section {
+                padding: 0;
+                margin-bottom: 2rem;
+            }
+
+            /* Adjust headings */
+            .section h2 {
+                font-size: 1.75rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .section h3 {
+                font-size: 1.25rem;
+                margin: 1.5rem 0 0.75rem;
+            }
+        }
+
+        /* Small mobile devices */
+        @media (max-width: 480px) {
+            .content {
+                padding: 0.75rem;
+            }
+
+            .section {
+                margin-bottom: 1.5rem;
+            }
+
+            .code-block {
+                margin: 0.75rem -0.75rem;
+                padding: 0.75rem;
+            }
+
+            .sidebar {
+                width: 260px;
+                padding: 1.5rem;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; /* Match header offset */
+        }
+
+        .section {
+            scroll-margin-top: 80px; /* Match header offset */
+        }
+
+        .nav-item a {
+            transition: all 0.2s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-button" aria-label="Toggle menu">
+        ☰
+    </button>
+
+    <div class="overlay"></div>
+
+    <div class="layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>🤖 VAssist</h1>
+                <p>Documentation</p>
+            </div>
+            <nav>
+                <ul class="sidebar-nav">
+                    <li class="nav-section">
+                        <div class="nav-section-title">Getting Started</div>
+                        <ul class="nav-items">
+                            <li class="nav-item"><a href="#introduction">Introduction</a></li>
+                            <li class="nav-item"><a href="#installation">Installation</a></li>
+                            <li class="nav-item"><a href="#quick-start">Quick Start</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-section">
+                        <div class="nav-section-title">Core Concepts</div>
+                        <ul class="nav-items">
+                            <li class="nav-item"><a href="#configuration">Configuration</a></li>
+                            <li class="nav-item"><a href="#languages">Languages</a></li>
+                            <li class="nav-item"><a href="#theming">Theming</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-section">
+                        <div class="nav-section-title">Advanced</div>
+                        <ul class="nav-items">
+                            <li class="nav-item"><a href="#customization">Customization</a></li>
+                            <li class="nav-item"><a href="#api-reference">API Reference</a></li>
+                            <li class="nav-item"><a href="#events">Events</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <section id="introduction" class="section">
+                <h2>Introduction</h2>
+                <p>VAssist is a lightweight, multilingual virtual assistant designed to enhance user interaction on websites. Built with modern web technologies, it provides a natural conversation interface with support for multiple languages and customizable themes.</p>
+                
+                <div class="alert alert-info">
+                    <strong>Key Features:</strong>
+                    <ul>
+                        <li>Advanced dialogue system with deep nesting</li>
+                        <li>Support for 6+ languages with rich message styling</li>
+                        <li>Multiple theme options (Light/Dark/Custom)</li>
+                        <li>AI capabilities and automation tools</li>
+                        <li>Context-aware responses</li>
+                        <li>No external dependencies</li>
+                    </ul>
+                </div>
+
+                <h3>Browser Support</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Browser</th>
+                            <th>Version</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Chrome</td>
+                            <td>≥ 60</td>
+                        </tr>
+                        <tr>
+                            <td>Firefox</td>
+                            <td>≥ 60</td>
+                        </tr>
+                        <tr>
+                            <td>Safari</td>
+                            <td>≥ 11</td>
+                        </tr>
+                        <tr>
+                            <td>Edge</td>
+                            <td>≥ 79</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="installation" class="section">
+                <h2>Installation</h2>
+                
+                <h3>NPM</h3>
+                <p>Install VAssist using npm:</p>
+                <div class="code-block">
+                    <code>npm install vassist --save</code>
+                </div>
+
+                <h3>CDN</h3>
+                <p>Include VAssist directly from a CDN:</p>
+                <div class="code-block">
+                    <code>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vassist/dist/styles.css"&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/vassist/dist/script.js"&gt;&lt;/script&gt;</code>
+                </div>
+
+                <h3>Manual Download</h3>
+                <p>Download the latest version from GitHub:</p>
+                <ol>
+                    <li>Download the <a href="https://github.com/ZeroYen/Vassist/releases">latest release</a></li>
+                    <li>Include the files in your project</li>
+                    <li>Add the necessary HTML tags</li>
+                </ol>
+
+                <div class="alert alert-warning">
+                    <strong>Note:</strong> Make sure to include both the CSS and JavaScript files in your HTML.
+                </div>
+            </section>
+
+            <section id="quick-start" class="section">
+                <h2>Quick Start</h2>
+                <p>Get started with VAssist in three simple steps:</p>
+
+                <h3>1. Include Required Files</h3>
+                <div class="code-block">
+                    <pre><code class="language-html">&lt;!-- Add to your HTML head --&gt;
+&lt;link rel="stylesheet" href="path/to/vassist/styles.css"&gt;
+
+&lt;!-- Add before closing body tag --&gt;
+&lt;script src="path/to/vassist/script.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+
+                <h3>2. Initialize VAssist</h3>
+                <div class="code-block">
+                    <pre><code class="language-javascript">// Basic initialization
+const assistant = new VirtualAssistant();
+
+// With custom options
+const assistant = new VirtualAssistant({
+    language: 'en',
+    theme: {
+        primaryColor: '#2196f3',
+        textColor: '#333333'
+    }
+});</code></pre>
+                </div>
+
+                <h3>3. Add Language Data</h3>
+                <p>Create a JSON file for each supported language:</p>
+                <div class="code-block">
+                    <pre><code class="language-json">{
+  "welcome": {
+    "message": {
+      "text": "Welcome! How can I help?",
+      "style": "greeting"
+    },
+    "options": [
+      {
+        "text": "Get Started",
+        "next": "start",
+        "style": "primary"
+      },
+      {
+        "text": "Learn More",
+        "next": "about",
+        "style": "secondary"
+      }
+    ]
+  }
+}</code></pre>
+                </div>
+            </section>
+
+            <section id="configuration" class="section">
+                <h2>Configuration</h2>
+                <p>VAssist can be extensively configured through the template.json file and initialization options.</p>
+
+                <h3>Template Configuration</h3>
+                <div class="code-block">
+                    <pre><code class="language-json">{
+  "theme": {
+    "primaryColor": "#2196f3",
+    "textColor": "#333333",
+    "backgroundColor": "#ffffff",
+    "buttonColor": "#2196f3",
+    "buttonTextColor": "#ffffff",
+    "fontFamily": "Segoe UI, sans-serif",
+    "fontSize": "14px",
+    "borderRadius": "8px"
+  },
+  "layout": {
+    "position": "bottom-right",
+    "buttonSize": "60px",
+    "windowWidth": "320px",
+    "windowHeight": "480px",
+    "margin": "20px"
+  },
+  "animations": {
+    "duration": "0.3s",
+    "type": "ease-out"
+  }
+}</code></pre>
+                </div>
+
+                <h3>Available Options</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>primaryColor</td>
+                            <td>string</td>
+                            <td>#2196f3</td>
+                            <td>Main theme color</td>
+                        </tr>
+                        <tr>
+                            <td>position</td>
+                            <td>string</td>
+                            <td>bottom-right</td>
+                            <td>Widget position</td>
+                        </tr>
+                        <tr>
+                            <td>animations</td>
+                            <td>object</td>
+                            <td>{}</td>
+                            <td>Animation settings</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="languages" class="section">
+                <h2>Languages</h2>
+                <p>VAssist supports multiple languages through JSON-based language files.</p>
+
+                <h3>Supported Languages</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Language</th>
+                            <th>Code</th>
+                            <th>RTL Support</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>English</td>
+                            <td>en</td>
+                            <td>No</td>
+                            <td>✅ Stable</td>
+                        </tr>
+                        <tr>
+                            <td>Svenska</td>
+                            <td>sv</td>
+                            <td>No</td>
+                            <td>✅ Stable</td>
+                        </tr>
+                        <tr>
+                            <td>日本語</td>
+                            <td>ja</td>
+                            <td>No</td>
+                            <td>✅ Stable</td>
+                        </tr>
+                        <tr>
+                            <td>한국어</td>
+                            <td>ko</td>
+                            <td>No</td>
+                            <td>✅ Stable</td>
+                        </tr>
+                        <tr>
+                            <td>中文</td>
+                            <td>zh</td>
+                            <td>No</td>
+                            <td>✅ Stable</td>
+                        </tr>
+                        <tr>
+                            <td>Tiếng Việt</td>
+                            <td>vi</td>
+                            <td>No</td>
+                            <td>✅ Stable</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Adding a New Language</h3>
+                <p>To add a new language:</p>
+                <ol>
+                    <li>Create a new JSON file in the languages directory</li>
+                    <li>Follow the language template structure</li>
+                    <li>Register the language in your configuration</li>
+                </ol>
+
+                <div class="code-block">
+                    <pre><code class="language-javascript">// Register a new language
+assistant.addLanguage('fr', {
+    welcome: {
+        message: "Bonjour! Comment puis-je vous aider?",
+        options: [
+            {text: "Commencer", next: "start"},
+            {text: "En savoir plus", next: "about"}
+        ]
+    }
+});</code></pre>
+                </div>
+            </section>
+
+            <section id="theming" class="section">
+                <h2>Theming</h2>
+                <p>VAssist supports comprehensive theming through CSS variables and the template.json configuration.</p>
+
+                <h3>CSS Variables</h3>
+                <div class="code-block">
+                    <pre><code class="language-css">:root {
+    --vassist-primary-color: #2196f3;
+    --vassist-text-color: #333333;
+    --vassist-bg-color: #ffffff;
+    --vassist-button-color: #2196f3;
+    --vassist-button-text-color: #ffffff;
+}</code></pre>
+                </div>
+
+                <h3>Custom Themes</h3>
+                <p>Create custom themes by overriding CSS variables:</p>
+                <div class="code-block">
+                    <pre><code class="language-css">/* Dark theme */
+.vassist-dark-theme {
+    --vassist-bg-color: #1a1a1a;
+    --vassist-text-color: #ffffff;
+    --vassist-primary-color: #64b5f6;
+}</code></pre>
+                </div>
+
+                <div class="alert alert-info">
+                    <strong>Tip:</strong> Use CSS custom properties for dynamic theme switching without JavaScript.
+                </div>
+            </section>
+
+            <section id="customization" class="section">
+                <h2>Customization</h2>
+                
+                <h3>Message Styles</h3>
+                <p>VAssist supports various message styles for different contexts:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Style</th>
+                            <th>Usage</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>greeting</code></td>
+                            <td>Welcome messages</td>
+                            <td>Gradient background with white text</td>
+                        </tr>
+                        <tr>
+                            <td><code>question</code></td>
+                            <td>General prompts</td>
+                            <td>Light background with default text</td>
+                        </tr>
+                        <tr>
+                            <td><code>helpful</code></td>
+                            <td>Tips and customization</td>
+                            <td>Warm background with orange accent</td>
+                        </tr>
+                        <tr>
+                            <td><code>informative</code></td>
+                            <td>Feature descriptions</td>
+                            <td>Green accented information</td>
+                        </tr>
+                        <tr>
+                            <td><code>supportive</code></td>
+                            <td>Help messages</td>
+                            <td>Blue accented support text</td>
+                        </tr>
+                        <tr>
+                            <td><code>success</code></td>
+                            <td>Confirmations</td>
+                            <td>Green success indicators</td>
+                        </tr>
+                        <tr>
+                            <td><code>tutorial</code></td>
+                            <td>Learning content</td>
+                            <td>Purple accented guides</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Dialogue Structure</h3>
+                <p>The dialogue system supports deep nesting with context-aware responses:</p>
+                <pre><code class="language-json">{
+  "dialogues": {
+    "start": {
+      "message": {
+        "text": "How can I assist you today?",
+        "style": "question"
+      },
+      "options": [
+        {
+          "id": "customize",
+          "text": "Customize VAssist",
+          "response": {
+            "text": "Let's personalize VAssist to your preferences",
+            "style": "helpful"
+          },
+          "nextNode": "customize_options"
+        }
+      ]
+    },
+    "customize_options": {
+      "message": {
+        "text": "What would you like to customize?",
+        "style": "helpful"
+      },
+      "options": [
+        {
+          "id": "theme",
+          "text": "Change Theme",
+          "nextNode": "theme_selection"
+        }
+      ]
+    }
+  }
+}</code></pre>
+
+                <h3>Smart Features</h3>
+                <p>VAssist includes several AI-powered capabilities:</p>
+                <ul>
+                    <li><strong>Natural Language Processing:</strong> Understanding user intent</li>
+                    <li><strong>Smart Suggestions:</strong> Context-based recommendations</li>
+                    <li><strong>Automation Tools:</strong> Task automation capabilities</li>
+                    <li><strong>Context Awareness:</strong> Maintaining conversation history</li>
+                </ul>
+            </section>
+
+            <section id="api-reference" class="section">
+                <h2>API Reference</h2>
+                <h3>Core Methods</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Method</th>
+                            <th>Parameters</th>
+                            <th>Return</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>open()</td>
+                            <td>None</td>
+                            <td>void</td>
+                            <td>Opens the chat window</td>
+                        </tr>
+                        <tr>
+                            <td>close()</td>
+                            <td>None</td>
+                            <td>void</td>
+                            <td>Closes the chat window</td>
+                        </tr>
+                        <tr>
+                            <td>setLanguage(lang)</td>
+                            <td>string</td>
+                            <td>void</td>
+                            <td>Changes the current language</td>
+                        </tr>
+                        <tr>
+                            <td>addLanguage(code, data)</td>
+                            <td>string, object</td>
+                            <td>void</td>
+                            <td>Adds a new language</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Event Handling</h3>
+                <div class="code-block">
+                    <pre><code class="language-javascript">// Listen for events
+assistant.on('message', (message) => {
+    console.log('New message:', message);
+});
+
+assistant.on('languageChange', (lang) => {
+    console.log('Language changed to:', lang);
+});
+
+assistant.on('open', () => {
+    console.log('Assistant opened');
+});</code></pre>
+                </div>
+            </section>
+
+            <section id="events" class="section">
+                <h2>Events</h2>
+                <p>VAssist provides a rich event system for tracking and responding to user interactions.</p>
+
+                <h3>Available Events</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Data</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>open</td>
+                            <td>none</td>
+                            <td>Fired when the chat window opens</td>
+                        </tr>
+                        <tr>
+                            <td>close</td>
+                            <td>none</td>
+                            <td>Fired when the chat window closes</td>
+                        </tr>
+                        <tr>
+                            <td>message</td>
+                            <td>Message object</td>
+                            <td>Fired when a message is sent/received</td>
+                        </tr>
+                        <tr>
+                            <td>languageChange</td>
+                            <td>Language code</td>
+                            <td>Fired when language is changed</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Custom Event Handling</h3>
+                <div class="code-block">
+                    <pre><code class="language-javascript">// Custom event handler
+assistant.on('message', (message) => {
+    // Track analytics
+    analytics.track('chat_message', {
+        type: message.type,
+        content: message.text
+    });
+
+    // Custom logging
+    console.log(`[${message.timestamp}] ${message.text}`);
+});</code></pre>
+                </div>
+
+                <div class="alert alert-info">
+                    <strong>Best Practice:</strong> Always remove event listeners when they're no longer needed to prevent memory leaks.
+                </div>
+            </section>
+
+            <footer class="footer">
+                <p>Made with ❤️ by ZeroYen</p>
+                <div class="social-links">
+                    <a href="https://github.com/ZeroYen/Vassist">GitHub</a> |
+                    <a href="https://github.com/ZeroYen/Vassist/issues">Issues</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuButton = document.querySelector('.mobile-menu-button');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.overlay');
+
+            function toggleMenu() {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+                document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+            }
+
+            menuButton?.addEventListener('click', toggleMenu);
+            overlay?.addEventListener('click', toggleMenu);
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        if (window.innerWidth <= 768) {
+                            toggleMenu();
+                        }
+
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+
+                        history.pushState(null, '', targetId);
+                    }
+                });
+            });
+
+            if (location.hash) {
+                const targetElement = document.querySelector(location.hash);
+                if (targetElement) {
+                    setTimeout(() => {
+                        const headerOffset = 80;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }, 100);
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-item a');
+
+            function setActiveLink() {
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                        currentSection = '#' + section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', setActiveLink);
+            setActiveLink();
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-json.min.js"></script>
+    <script src="src/script.js"></script>
+</body>
+</html>
