@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAssist - Multilingual Virtual Assistant</title>
+    <link rel="stylesheet" href="src/styles.css">
+    <style>
+        :root {
+            --primary-color: #2196f3;
+            --text-color: #333;
+            --bg-color: #f5f8fa;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), #1976d2);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .language-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .demo-section {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 4rem 2rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+        }
+
+        .demo-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .demo-button:hover {
+            background: #1976d2;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>🤖 VAssist</h1>
+        <p>A powerful multilingual virtual assistant that speaks your language</p>
+        <div class="languages">
+            <span class="language-badge">English</span>
+            <span class="language-badge">Svenska</span>
+            <span class="language-badge">日本語</span>
+            <span class="language-badge">한국어</span>
+            <span class="language-badge">中文</span>
+            <span class="language-badge">Tiếng Việt</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🌐</div>
+                <h3>Multilingual Support</h3>
+                <p>Communicate effortlessly in multiple languages with built-in support for 6 languages and easy expansion options.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Smart Conversations</h3>
+                <p>Engage in natural, context-aware conversations with advanced dialogue management.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Customizable Design</h3>
+                <p>Easily customize the appearance to match your brand with our flexible theming system.</p>
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>Try It Yourself!</h2>
+            <p>Click the chat button in the bottom-right corner to start a conversation with VAssist.</p>
+            <button class="demo-button" onclick="window.virtualAssistant.open()">Start Chat</button>
+        </div>
+    </div>
+
+    <!-- Initialize VAssist -->
+    <script src="src/script.js"></script>
+</body>
+</html>
