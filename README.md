@@ -1,4 +1,4 @@
-# VAssist - Multilingual Virtual Assistant 🤖 (v1.0.0)
+# VAssist - Multilingual Virtual Assistant 🤖 (v1.1.0)
 
 A lightweight, customizable virtual assistant that supports multiple languages and features a dynamic dialogue system. Built with vanilla JavaScript, this assistant can be easily integrated into any website.
 
@@ -14,18 +14,27 @@ A lightweight, customizable virtual assistant that supports multiple languages a
   - Chinese (中文)
   - Vietnamese (Tiếng Việt)
 
-- 💬 **Dynamic Dialogue System**
-  - Customizable conversation flows
-  - Rich response options
-  - Support for nested dialogues
+- 💬 **Advanced Dialogue System**
+  - Deep nested conversation flows
+  - Context-aware responses
+  - Rich message styling
+  - Interactive UI elements
+  - Smooth transitions
   - Typing indicators
-  - Smooth animations
 
-- 🎨 **Customizable Themes**
-  - Configurable colors and styles
-  - Responsive design
+- 🎨 **Extensive Customization**
+  - Multiple theme options (Light/Dark/Custom)
+  - Adjustable size and position
+  - Message styling variants
   - Custom avatars support
-  - Flexible positioning
+  - Flexible layout options
+
+- 🛠️ **Smart Features**
+  - AI capabilities demonstration
+  - Automation tools
+  - Third-party integrations
+  - Context awareness
+  - Smart suggestions
 
 ## 🚀 Quick Start
 
@@ -60,18 +69,41 @@ A lightweight, customizable virtual assistant that supports multiple languages a
   "languages": {
     "en": {
       "name": "English",
+      "welcomeMessage": {
+        "text": "👋 Hello! I'm VAssist, your virtual assistant.",
+        "style": "greeting"
+      },
       "dialogues": {
         "start": {
           "message": {
-            "text": "How can I help you today?"
+            "text": "How can I assist you today?",
+            "style": "question"
           },
-          "options": [...]
+          "options": [
+            {
+              "id": "customize",
+              "text": "Customize VAssist",
+              "nextNode": "customize_options"
+            }
+          ]
         }
       }
     }
   }
 }
 ```
+
+## 🎨 Message Styles
+
+VAssist supports various message styles for different contexts:
+
+- `greeting`: Welcome messages with gradient background
+- `question`: General questions and prompts
+- `helpful`: Tips and customization options
+- `informative`: Feature descriptions and information
+- `supportive`: Help and troubleshooting messages
+- `success`: Confirmation and success messages
+- `tutorial`: Learning and guide content
 
 ## 🛠️ Customization
 
@@ -120,23 +152,30 @@ Add a new language section in `dialogue.json`:
 
 ```
 vassist/
+├── src/
+│   ├── script.js      # Core assistant functionality
+│   └── styles.css     # Styling and animations
 ├── data/
 │   ├── dialogue.json  # Dialogue configurations
 │   └── template.json  # Theme and layout settings
-├── src/
-│   ├── script.js      # Core assistant functionality
-│   └──  styles.css     # Styling and animations
-├── index.html         # Demo page
+├── example.html         # Demo page
 └── README.md         # Documentation
 ```
 
 ## 🔄 Version History
 
+### v1.1.0
+- Enhanced dialogue system with deeper nesting
+- Added new message styles
+- Improved customization options
+- Added AI features demonstration
+- Restructured project files
+
 ### v1.0.0
 - Initial release
 - Multilingual support for 6 languages
-- Dynamic dialogue system
-- Customizable themes
+- Basic dialogue system
+- Theme customization
 - Responsive design
 
 ## 🤝 Contributing
